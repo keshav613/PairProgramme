@@ -38,6 +38,13 @@ require("./auths/googleAuth")(passport);
 
 app.use("/", loginRouter);
 
+const checkLoggedIn = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return res.redirect("/dashboard");
+  }
+  next();
+};
+
 //Expose a route for all ur features
 app.use("/dashboard", checkLoggedIn, application);
 
