@@ -1,0 +1,256 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* (10px/16px) *100 */
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  color: #333;
+  overflow-x: hidden;
+}
+
+@keyframes movefrombottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+
+.hideElement {
+  display: none;
+}
+
+.blur {
+  filter: blur(3px);
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+  border-radius: 9px;
+  color: #fff;
+
+  border: none;
+}
+
+.header {
+  font-size: 5.2rem;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+  color: #333;
+  line-height: 1.05;
+  margin-bottom: 3rem;
+}
+
+.section-getStarted {
+  padding: 8rem 0 9.6rem 0;
+  background-color: #fdf2e9;
+}
+
+.Page-getStarted {
+  display: grid;
+  max-width: 130rem;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 3.2rem;
+  gap: 9.6rem;
+}
+
+.getStarted-image {
+  width: 100%;
+}
+
+.getStarted-paragraph {
+  font-size: 1.8rem;
+  line-height: 1.6;
+}
+.getStarted-paragraph span {
+  font-size: 2.4rem;
+  color: #f2892c;
+}
+.btn-getStarted {
+  padding: 16px 32px;
+  background-color: #fe902f;
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+.loginForm {
+  background-color: #fdf2e9;
+  position: absolute;
+  top: 20%;
+  left: 37%;
+  width: 25%;
+  height: 50%;
+  padding: 4.8rem;
+  border-radius: 9px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  animation: movefrombottom 1s;
+  transition: all 0.8s ease;
+  perspective: 1000px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+h3 {
+  color: #333;
+  /* line-height: 1.2; */
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1.8rem;
+  text-align: center;
+}
+input {
+  padding: 1rem;
+  margin-bottom: 1.8rem;
+  width: 100%;
+  font-size: 1.4rem;
+  font-family: inherit;
+  color: inherit;
+  border: none;
+  background-color: #fdf2e9;
+  border-radius: 9px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-login {
+  padding: 8px 16px;
+  width: 100%;
+  font-size: 1.8rem;
+  text-align: center;
+  background-color: #fe902f;
+  margin-bottom: 2.2rem;
+}
+
+.btn-submit {
+  padding: 8px 16px;
+  width: 100%;
+  font-size: 1.8rem;
+  text-align: center;
+  background-color: #fe902f;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn:hover {
+  background-color: #ea7f21;
+  cursor: pointer;
+  box-shadow: 0 1rem 2rem rgba(152, 152, 152, 0.2);
+  transform: translateY(-0.3rem);
+}
+
+.login-register {
+  font-size: 1.4rem;
+  display: flex;
+  gap: 0.2rem;
+  justify-content: center;
+}
+
+.login-aTag {
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* REGISTER PAGE */
+.section-register {
+  padding: 4rem 0 9.6rem 0;
+  background-color: #f78f34;
+  height: 100vh;
+}
+
+.register-textArea .header {
+  color: #fff;
+}
+
+.register-textArea .getStarted-paragraph {
+  color: #fff;
+}
+
+.Page-register {
+  max-width: 130rem;
+  margin: 5rem auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 3.2rem;
+  gap: 9.6rem;
+}
+
+.registerForm {
+  background-color: #fdf2e9;
+  justify-self: center;
+  width: 75%;
+  height: 100%;
+  padding: 4.8rem;
+  border-radius: 9px;
+  animation: movefrombottom 1s;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  transition: all 0.8s ease;
+}
+
+/* .registerFrom input {
+  width: 10%;
+} */
+
+.break_before_gAuth {
+  width: 75%;
+  margin: auto;
+  border: 1px solid #d3d0cc;
+}
+
+.img-gAuth_container {
+  display: inline-block;
+  margin-right: 1rem;
+}
+.img-gAuth {
+  height: 1.6rem;
+  width: 1.6rem;
+}
+
+.Logos-Area {
+  text-align: center;
+  margin-top: 15rem;
+}
+.logos-Header {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.75px;
+  margin-bottom: 2rem;
+}
+.logos {
+  margin: auto;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.logos ion-icon {
+  width: 3.2rem;
+  height: 3.2rem;
+  filter: brightness(0);
+  opacity: 70%;
+}

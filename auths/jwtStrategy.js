@@ -4,8 +4,8 @@ const User = require("../models/User");
 
 module.exports = (passport) => {
   passport.use(
-    new LocalStrategy((user, password, done) => {
-      User.findOne({ email: user }, (err, user) => {
+    new LocalStrategy((email, password, done) => {
+      User.findOne({ email: email }, (err, user) => {
         if (err) return done(err, false);
         else if (!user) return done("User does not exist, pls register", false);
 
