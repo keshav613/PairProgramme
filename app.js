@@ -17,6 +17,8 @@ app.use(session({ secret: "cats" }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.static("public"));
+app.set("view engine", "ejs");
 
 mongoose
   .connect(dbstring, {
@@ -38,14 +40,14 @@ require("./auths/googleAuth")(passport);
 
 app.use("/", loginRouter);
 
-const checkLoggedIn = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return res.redirect("/dashboard");
-  }
-  next();
-};
+// const checkLoggedIn = (req, res, next) => {
+//   if (req.isAuthenticated()) {
+//     return res.redirect("/dashboard");
+//   }
+//   next();
+// };
 
 //Expose a route for all ur features
-app.use("/dashboard", checkLoggedIn, application);
+// app.use("/dashboard", checkLoggedIn, applicationLogic);
 
 app.listen(port);
