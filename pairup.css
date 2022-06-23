@@ -254,3 +254,16 @@ input {
   filter: brightness(0);
   opacity: 70%;
 }
+
+.designWindow {
+  display: flex;
+}
+
+.Window {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.mainWindow {
+  display: flex;
+}

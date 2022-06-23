@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main</title>
+    <link rel="stylesheet" href="pairup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="mainWindow">
+        <div class="Window">
+          <div class="designWindow">
+            <div class="fontArea">
+              <label for="fonts">fonts:</label>
+              <select id="fonts" name="fonts">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="fiat">Fiat</option>
+                <option value="audi">Audi</option>
+              </select>
+            </div>
+            <div class="sizeArea">
+              <label for="fontSize">Font Size:</label>
+              <select id="fontSize" name="fontSize">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="fiat">Fiat</option>
+                <option value="audi">Audi</option>
+              </select>
+            </div>
+            <div class="themeArea">
+              <label for="theme">Theme:</label>
+              <select id="theme" name="theme">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="fiat">Fiat</option>
+                <option value="audi">Audi</option>
+              </select>
+            </div>
+            <div class="languageArea">
+              <label for="language">language:</label>
+              <select id="language" name="language">
+                <option value="volvo">C++</option>
+                <option value="saab">Python</option>
+                <option value="fiat">Java</option>
+                <option value="audi">Murali</option>
+              </select>
+            </div>
+          </div>
+          <div class="codeWindow">
+            <textarea></textarea>
+          </div>
+        </div>
+        <!-- Window End -->
+        <div class="videoAndChatBox">
+          <div id="chatbox">
+            <div class="panel panel-primary">
+              <!-- Video Call -->
+              <div id="video-container">
+                <video autoplay id="second-video"></video>
+                <video autoplay id="my-video" muted="true"></video>
+                <div id="step2">
+                  <p>Your ID: <span id="my-id">...</span></p>
+                  <div class="form-inline">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Call User ID..."
+                      id="callto-id"
+                    />
+                    <a href="#" class="btn btn-sm btn-success" id="make-call"
+                      >Call</a
+                    >
+                  </div>
+                </div>
+                <div id="step3">
+                  <p>
+                    Talk to <span id="second-id">...</span>
+                    <a href="#" class="btn btn-sm btn-danger" id="end-call"
+                      >End Call</a
+                    >
+                  </p>
+                </div>
+              </div>
+              <!-- Chat room -->
+              <div class="panel-heading">
+                CHAT ROOM
+                <span class="pull-right" id="chatbox-username">
+                  {{#if user}} {{user.name}} {{/if}}
+                </span>
+              </div>
+              <div class="panel-body">
+                <ul
+                  class="media-list"
+                  style="height: 100px; overflow-y: scroll"
+                  id="chatbox-listMessages"
+                ></ul>
+              </div>
+              <div class="panel-footer">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter message"
+                    id="userMessage"
+                  />
+                  <span class="input-group-btn">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      onclick="sendMessage()"
+                    >
+                      SEND
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Video & Chat box end -->
+      </div>
+      <!-- Main Window END-->
+    </div>
+  </body>
+</html>
