@@ -4,10 +4,108 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Main</title>
+    <title>Collaborative CodeMirror Editor</title>
+    <style type="text/css">
+      html,
+      body,
+      #wrapper {
+        height: 100%;
+        font-family: helvetica, arial, sans-serif;
+        overflow: hidden;
+      }
+
+      h1 {
+        margin: 0;
+        padding: 0;
+      }
+
+      #wrapper {
+        display: flex;
+        max-width: 1500px;
+        margin: auto;
+        flex-direction: column;
+        font-family: sans-serif;
+      }
+
+      #editor {
+        flex: 1;
+        overflow: hidden;
+      }
+
+      #users {
+        list-style: none;
+        margin: 0;
+      }
+
+      #users li {
+        width: 25px;
+        height: 25px;
+        margin: 2px;
+        color: white;
+        float: right;
+        text-align: center;
+        line-height: 25px;
+      }
+
+      .CodeMirror {
+        height: 100%;
+      }
+
+      @keyframes cursorThrob {
+        0% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.5;
+        }
+      }
+    </style>
     <link rel="stylesheet" href="pairup.css" />
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script>
+      const ROOM_ID = "<%= roomId %>";
+    </script>
+    <script
+      type="text/javascript"
+      src="/node_modules/codemirror/lib/codemirror.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/node_modules/codemirror/addon/selection/mark-selection.js"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="/sharedb-dist/sharedb-client.min.js"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="/sharedb-dist/ot-text.min.js"
+      defer
+    ></script>
+    <script
+      src="https://unpkg.com/peerjs@1.4.5/dist/peerjs.min.js"
+      defer
+    ></script>
+    <script
+      src="/node_modules/codemirror/addon/mode/loadmode.js"
+      defer
+    ></script>
+    <script
+      src="/node_modules/codemirror/addon/edit/matchbrackets.js"
+      defer
+    ></script>
+    <script src="/public/codeMirror.js" defer></script>
+
+    <!-- <script src="/public/AV-chat.js" defer></script> -->
+    <link rel="stylesheet" href="/node_modules/codemirror/lib/codemirror.css" />
   </head>
   <body>
+    <ul id="users"></ul>
     <div class="section-Main">
       <div class="mainWindow">
         <div class="Window">
@@ -31,15 +129,15 @@
             <div class="languageArea">
               <label class="designWindow-Label" for="language">language</label>
               <select id="language" name="language">
-                <option value="C++">C++</option>
-                <option value="Python">Python</option>
-                <option value="Java">Java</option>
-                <option value="JavaScript">JavaScript</option>
+                <option value="clike">C++</option>
+                <option value="python">Python</option>
+                <option value="clike">Java</option>
+                <option value="javaScript">JavaScript</option>
               </select>
             </div>
           </div>
           <div class="codeWindow">
-            <textarea></textarea>
+            <textarea>HEY</textarea>
           </div>
         </div>
         <!-- Window End -->
