@@ -1,3 +1,6 @@
+// Websocket Initialization
+// module.exports = (io) => {
+console.log("client socket connection started");
 // Indicates whether or not we should not watch
 // changes emitted by the editor due to changes made
 // via operations
@@ -55,9 +58,9 @@ console.log("info mode", language);
 // Listen for changes to the document
 //Whenver a fucntion is set we need to do broadcast to every one in room.
 sharedoc.subscribe((d) => {
-  ed.setOption("mode", mode);
+  ed.setOption("mode", language);
   console.log("auto loaf functions ", CodeMirror.autoLoadMode.toString());
-  CodeMirror.autoLoadMode(ed, mode);
+  CodeMirror.autoLoadMode(ed, language);
   console.log("subscribe ", sharedoc.data);
   stopWatch = true;
   if (sharedoc.data === undefined) {
@@ -114,17 +117,17 @@ const addName = (id, name) => {
   const styleTag = document.createElement("style");
   styleTag.id = `style-${id}`;
   styleTag.innerHTML = `
-                .u-${id} { background-color: ${color}; }
-                .CodeMirror-line .u-${id}                   { background-color: ${hexToRgbaStyle(
+              .u-${id} { background-color: ${color}; }
+              .CodeMirror-line .u-${id}                   { background-color: ${hexToRgbaStyle(
     color,
     0.35
   )}; }
-                .CodeMirror-line .u-${id}.cursor            { opacity: 1; }
-                .CodeMirror-line .u-${id}.cursor.left       { border-left: 2px solid ${color}; }
-                .CodeMirror-line .u-${id}.cursor.right      { border-right: 2px solid ${color}; }
-                .CodeMirror-line .u-${id}.empty             { background-color: transparent; }
+              .CodeMirror-line .u-${id}.cursor            { opacity: 1; }
+              .CodeMirror-line .u-${id}.cursor.left       { border-left: 2px solid ${color}; }
+              .CodeMirror-line .u-${id}.cursor.right      { border-right: 2px solid ${color}; }
+              .CodeMirror-line .u-${id}.empty             { background-color: transparent; }
 
-            `;
+          `;
   document.querySelector("head").appendChild(styleTag);
   console.log("adding name", styleTag);
 };
@@ -220,8 +223,6 @@ const clearAll = () => {
   for (let key in anchorMap) removeId(key);
 };
 
-// Websocket Initialization
-io = io();
 io.on("connect", () => {
   io.on("disconnect", () => clearAll());
 
@@ -247,3 +248,4 @@ io.on("connect", () => {
     removeId(e.id);
   });
 });
+// };

@@ -1,5 +1,5 @@
-// let socket = io();
-console.log(io);
+// module.exports = (io) => {
+console.log("client socket connection started");
 const calls = new Map();
 let videoGrid = document.getElementById("video-grid");
 
@@ -8,9 +8,9 @@ myVideo.muted = true;
 
 let peer;
 /*
-Add support for having older user call details when new user joins, else when he exits we wont remove
-the call
-*/
+  Add support for having older user call details when new user joins, else when he exits we wont remove
+  the call
+  */
 let constraints = { video: true, audio: false };
 console.log(constraints);
 // let getUserMedia = navigator.getUserMedia
@@ -25,11 +25,15 @@ navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
 
   //When our client geets connected to peer server and gets an ID.
   peer.on("open", (id) => {
-    socket.emit("join-room", ROOM_ID, id);
+    io.emit("join-room", ROOM_ID, id);
+  });
+
+  io.on("chatMessage", function (data) {
+    $("#chatbox-listMessages").append(userMessage(data.username, data.message));
   });
 
   //Call new user with your stream
-  socket.on("new-user-joined", (userId) => {
+  io.on("new-user-joined", (userId) => {
     console.log(
       "client recevied boradcast, calling after 1sec to user ",
       userId
@@ -62,13 +66,25 @@ navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
   });
 
   //If current socket connection closes, stop your video stream
-  socket.on("user-exited", (userId) => {
+  io.on("user-exited", (userId) => {
     if (calls.has(userId)) {
       calls.get(userId).close();
       calls.delete(userId);
     }
   });
 });
+
+var userMessage = function (name, text) {
+  return (
+    '<li class="media"> <div class="media-body">  <div class="media">' +
+    '<div class="media-body">' +
+    "<b>" +
+    name +
+    "</b> : " +
+    text +
+    "<hr/> </div></div></div></li>"
+  );
+};
 
 const callNewUser = (userId, stream) => {
   //Call user with your video stream
@@ -114,3 +130,11 @@ const addVideo = (video, stream) => {
  * Here socket => map => video. Instead we could have simply kept mapping of video.
  *  When new user joins call him and store that
  */
+
+//CHAT
+var sendMessage = function () {
+  var userMessage = $("#userMessage").val();
+  io.emit("chatMessage", { message: userMessage, username: username });
+  $("#userMessage").val("");
+};
+// };

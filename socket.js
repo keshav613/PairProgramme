@@ -26,7 +26,7 @@ module.exports = function (server) {
   const io = socketIo(server);
 
   io.on("connection", (client) => {
-    "server socket connection started";
+    console.log("server socket connection started");
     const id = client.id;
     names[id] = String.fromCharCode(
       Math.floor("A".charCodeAt(0) + Math.random() * 26)
@@ -61,6 +61,21 @@ module.exports = function (server) {
       delete names[id];
       delete anchors[id];
       io.emit("id-left", { id });
+    });
+
+    client.on("chatMessage", (data) => {
+      console.log("messaage chatted");
+      io.to(socket.room).emit("chatMessage", data);
+    });
+
+    client.on("join-room", (roomId, userId) => {
+      client.join(roomId);
+      console.log("new user joined", userId, "in roomID ", roomId);
+      client.to(roomId).broadcast.emit("new-user-joined", userId);
+
+      client.on("disconnect", () => {
+        client.to(roomId).broadcast.emit("user-exited", userId);
+      });
     });
   });
 };
