@@ -42,6 +42,23 @@ module.exports = function (server) {
       io.emit("anchor-update", { id, anchor: anchors[id] });
     });
 
+    client.on("editorPropertyChanged", (roomId, theme, fontSize) => {
+      console.log(
+        "received and braodcasting to all in room ",
+        roomId,
+        theme,
+        fontSize
+      );
+      io.to(roomId).emit("editorPropertyChanged", theme, fontSize);
+    });
+    client.on("editorChanged", (roomId, mode) => {
+      console.log("received and braodcasting to all in room ", roomId, mode);
+      io.to(roomId).emit("editorChanged", mode);
+    });
+    client.on("chatMessage", (roomId, data) => {
+      console.log("messaage chatted");
+      io.to(roomId).emit("chatMessage", data);
+    });
     io.emit("id-join", {
       id,
       name: names[id],
@@ -63,18 +80,15 @@ module.exports = function (server) {
       io.emit("id-left", { id });
     });
 
-    client.on("chatMessage", (data) => {
-      console.log("messaage chatted");
-      io.to(socket.room).emit("chatMessage", data);
-    });
-
     client.on("join-room", (roomId, userId) => {
       client.join(roomId);
       console.log("new user joined", userId, "in roomID ", roomId);
-      client.to(roomId).broadcast.emit("new-user-joined", userId);
+      client.broadcast.to(roomId).emit("new-user-joined", userId);
+      // client.to(roomId).broadcast.emit("new-user-joined", userId);
 
       client.on("disconnect", () => {
-        client.to(roomId).broadcast.emit("user-exited", userId);
+        client.broadcast.to(roomId).emit("user-exited", userId);
+        // client.to(roomId).broadcast.emit("user-exited", userId);
       });
     });
   });

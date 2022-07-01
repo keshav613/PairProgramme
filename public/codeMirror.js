@@ -1,6 +1,6 @@
 // Websocket Initialization
 // module.exports = (io) => {
-console.log("client socket connection started");
+
 // Indicates whether or not we should not watch
 // changes emitted by the editor due to changes made
 // via operations
@@ -21,6 +21,21 @@ let ed = CodeMirror.fromTextArea(document.querySelector("textarea"), {
   autoCloseBrackets: true,
 });
 
+function editorPropertyChanged(theme = null, fontSize = null) {
+  console.log(
+    "broadcast to all, editor property changed",
+    theme,
+    fontSize,
+    " room ID : ",
+    ROOM_ID
+  );
+  io.emit("editorPropertyChanged", ROOM_ID, theme, fontSize);
+}
+
+function editorChanged(mode) {
+  console.log("broadcast to all, language changed ", mode);
+  io.emit("editorChanged", ROOM_ID, mode);
+}
 // Create operations for sharedb based on the editor
 ed.on("change", (ed, chg) => {
   if (stopWatch) return;
@@ -51,31 +66,33 @@ ed.on("cursorActivity", (e) => {
 const sharews = new WebSocket(`ws://localhost:8080`);
 const shareconn = new ShareDB.Connection(sharews);
 const docMatches = window.location.href.match(/\?doc=([a-zA-Z1-9]+)/);
-let sharedoc = shareconn.get("room", ROOM_ID);
+let sharedoc = shareconn.get("room", ROOM_ID + "/" + language);
 
 console.log("info mode", language);
 
 // Listen for changes to the document
 //Whenver a fucntion is set we need to do broadcast to every one in room.
-sharedoc.subscribe((d) => {
-  ed.setOption("mode", language);
-  console.log("auto loaf functions ", CodeMirror.autoLoadMode.toString());
-  CodeMirror.autoLoadMode(ed, language);
-  console.log("subscribe ", sharedoc.data);
-  stopWatch = true;
-  if (sharedoc.data === undefined) {
-    console.log("this doc not present, creating new doc with this key");
-    sharedoc.create(
-      "",
-      "text",
-      (data) => (sharedoc = shareconn.get("room", ROOM_ID))
-    );
-  }
-  ed.setValue(sharedoc.data);
-  ed.setCursor(0, 0);
-  ed.focus();
-  stopWatch = false;
-});
+// sharedoc.subscribe((d) => {
+//   ed.setOption("mode", language);
+//   console.log("auto loaf functions ", CodeMirror.autoLoadMode.toString());
+//   CodeMirror.autoLoadMode(ed, language);
+//   console.log("subscribe ", sharedoc.data);
+//   stopWatch = true;
+//   if (sharedoc.data === undefined) {
+//     console.log("this doc not present, creating new doc with this key");
+//     sharedoc.create(
+//       "",
+//       "text",
+//       (data) => (sharedoc = shareconn.get("room", ROOM_ID))
+//     );
+//   }
+//   ed.setValue(sharedoc.data);
+//   ed.setCursor(0, 0);
+//   ed.focus();
+//   stopWatch = false;
+// });
+setEditor();
+
 sharedoc.on("op", (op, mine) => {
   console.log(op, mine);
   if (mine) return;
@@ -223,29 +240,76 @@ const clearAll = () => {
   for (let key in anchorMap) removeId(key);
 };
 
-io.on("connect", () => {
-  io.on("disconnect", () => clearAll());
+function setEditor() {
+  console.log("setEditor called ", language);
+  sharedoc.subscribe((d) => {
+    ed.setOption("mode", language);
+    CodeMirror.autoLoadMode(ed, language);
+    stopWatch = true;
+    if (sharedoc.data === undefined) {
+      console.log("this doc not present, creating new doc with this key");
+      sharedoc.create(
+        "",
+        "text",
+        async (data) =>
+          (sharedoc = await shareconn.get("room", ROOM_ID + "/" + language))
+      );
+    }
+    ed.setValue(sharedoc.data);
+    ed.setCursor(0, 0);
+    ed.focus();
+    stopWatch = false;
+  });
+}
 
-  io.once("initialize", (e) => {
-    for (let id in e.anchors) io.id !== id && setAnchor(id, e.anchors[id]);
-    for (let id in e.names) io.id !== id && addName(id, e.names[id]);
-  });
-  io.on("anchor-update", (e) => {
-    if (io.id === e.id) return;
-    console.log("anchor-update");
-    setAnchor(e.id, e.anchor);
-  });
-  io.on("id-join", (e) => {
-    console.log(`id-joined`);
-    content = e.data;
-    if (io.id === e.id) return;
-    addName(e.id, e.name);
-    setAnchor(e.id, e.anchor);
-  });
-  io.on("id-left", (e) => {
-    if (io.id === e.id) return;
+// io.on("connection", () => {
+console.log("client socket connection started");
+io.on("disconnect", () => clearAll());
 
-    removeId(e.id);
-  });
+io.on("editorChanged", async (mode) => {
+  console.log("cacthcing editorChanged event");
+  sharedoc = await shareconn.get("room", ROOM_ID + "/" + language);
+  language = mode;
+  setEditor();
+  document.getElementById("language").value = mode;
 });
+
+io.on("editorPropertyChanged", (selectedTheme, fontSize) => {
+  console.log("cacthcing editorPropertyChanged event");
+  if (fontSize !== null) {
+    document.getElementById("codeMirror").style["font-size"] = `${fontSize}px`;
+    document.getElementById("fontSize").value = fontSize;
+  }
+  if (selectedTheme !== null) {
+    console.log("Hey theme changed to ", selectedTheme);
+    input = document.getElementById("theme");
+    theme = selectedTheme; //input.options[input.selectedIndex].textContent;
+    ed.setOption("theme", selectedTheme);
+    document.getElementById("theme").value = selectedTheme;
+  }
+});
+
+io.once("initialize", (e) => {
+  console.log("intializing socket connection");
+  for (let id in e.anchors) io.id !== id && setAnchor(id, e.anchors[id]);
+  for (let id in e.names) io.id !== id && addName(id, e.names[id]);
+});
+io.on("anchor-update", (e) => {
+  if (io.id === e.id) return;
+  console.log("anchor-update");
+  setAnchor(e.id, e.anchor);
+});
+io.on("id-join", (e) => {
+  console.log(`id-joined`);
+  content = e.data;
+  if (io.id === e.id) return;
+  addName(e.id, e.name);
+  setAnchor(e.id, e.anchor);
+});
+io.on("id-left", (e) => {
+  if (io.id === e.id) return;
+
+  removeId(e.id);
+});
+// });
 // };

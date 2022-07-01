@@ -1,5 +1,5 @@
 // module.exports = (io) => {
-console.log("client socket connection started");
+
 const calls = new Map();
 let videoGrid = document.getElementById("video-grid");
 
@@ -27,17 +27,14 @@ navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
   peer.on("open", (id) => {
     io.emit("join-room", ROOM_ID, id);
   });
-
+  console.log("client socket connection started");
   io.on("chatMessage", function (data) {
     $("#chatbox-listMessages").append(userMessage(data.username, data.message));
   });
 
   //Call new user with your stream
   io.on("new-user-joined", (userId) => {
-    console.log(
-      "client recevied boradcast, calling after 1sec to user ",
-      userId
-    );
+    console.log("calling new user ", userId);
     // setTimeout(callNewUser, 1000, peer, userId, stream);
     callNewUser(userId, stream);
   });
@@ -134,7 +131,7 @@ const addVideo = (video, stream) => {
 //CHAT
 var sendMessage = function () {
   var userMessage = $("#userMessage").val();
-  io.emit("chatMessage", { message: userMessage, username: username });
+  io.emit("chatMessage", ROOM_ID, { message: userMessage, username: username });
   $("#userMessage").val("");
 };
 // };
