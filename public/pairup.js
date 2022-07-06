@@ -8,10 +8,3 @@ getStartedBtn.addEventListener("click", function () {
   loginForm.classList.remove("hideElement");
   getStartedPage.classList.add("blur");
 });
-
-// createAcct.addEventListener("click", function () {
-//   registerForm.classList.remove("hideElement");
-//   loginForm.classList.add("rotateNegative");
-//   registerForm.classList.remove("rotatePositive");
-//   registerForm.classList.add("rotateNeutral");
-// });
