@@ -28,8 +28,12 @@ navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
     io.emit("join-room", ROOM_ID, id);
   });
   console.log("client socket connection started");
+
   io.on("chatMessage", function (data) {
-    $("#chatbox-listMessages").append(userMessage(data.username, data.message));
+    console.log("chat message recieved from broadcast", data);
+    document
+      .getElementById("chatbox-listMessages")
+      .append(userMessage(data.message));
   });
 
   //Call new user with your stream
@@ -71,12 +75,11 @@ navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
   });
 });
 
-var userMessage = function (name, text) {
+var userMessage = function (text) {
   return (
     '<li class="media"> <div class="media-body">  <div class="media">' +
     '<div class="media-body">' +
     "<b>" +
-    name +
     "</b> : " +
     text +
     "<hr/> </div></div></div></li>"
@@ -130,8 +133,10 @@ const addVideo = (video, stream) => {
 
 //CHAT
 var sendMessage = function () {
-  var userMessage = $("#userMessage").val();
-  io.emit("chatMessage", ROOM_ID, { message: userMessage, username: username });
-  $("#userMessage").val("");
+  let userMessageElement = document.getElementById("userMessage");
+  var userMessage = userMessageElement.value;
+  console.log("userMessage ", userMessage);
+  io.emit("chatMessage", ROOM_ID, { message: userMessage });
+  userMessageElement.value = "";
 };
 // };
