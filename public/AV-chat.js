@@ -77,12 +77,12 @@ navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
 
 var userMessage = function (text) {
   return (
-    '<li class="media"> <div class="media-body">  <div class="media">' +
-    '<div class="media-body">' +
-    "<b>" +
-    "</b> : " +
-    text +
-    "<hr/> </div></div></div></li>"
+    // '<li class="media"> <div class="media-body">  <div class="media">' +
+    // '<div class="media-body">' +
+    // "<b>" +
+    // "</b> : " +
+    text //+
+    // "<hr/> </div></div></div></li>"
   );
 };
 

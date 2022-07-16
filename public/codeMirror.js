@@ -20,6 +20,7 @@ let ed = CodeMirror.fromTextArea(document.querySelector("textarea"), {
   matchBrackets: true,
   autoCloseBrackets: true,
 });
+ed.setSize("100%", "100%");
 
 function editorPropertyChanged(theme = null, fontSize = null) {
   console.log(

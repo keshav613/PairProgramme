@@ -8,7 +8,7 @@
     <!-- <style type="text/css">
       
     </style> -->
-    <link rel="stylesheet" href="pairup.css" />
+    <link rel="stylesheet" href="/public/pairup.css" />
     <link
       rel="stylesheet"
       href="../node_modules/codemirror/theme/3024-day.css"
@@ -367,43 +367,79 @@
               </select>
             </div>
           </div>
+          <!-- <div class="codeWindow" id="codeMirror">
+            <textarea></textarea>
+          </div> -->
+
           <div class="codeWindow" id="codeMirror">
+            <!-- <textarea id="codeMirror"></textarea> -->
             <textarea></textarea>
           </div>
+          <div class="TestCases">
+            <div class="btn btn-AddTestcase">Add Testcase</div>
+          </div>
+
+          <div class="IO-container hideElement">
+            <div class="run-code">
+              <button class="btn-IO btn-testcase btn-IO-default">
+                Run Code
+              </button>
+            </div>
+            <div class="IO">
+              <button class="btn-IO btn-testcase btn-IO-default">
+                Testcase
+              </button>
+              <button class="btn-IO btn-runCodeResult">Run code result</button>
+            </div>
+            <div class="IO-textArea-container">
+              <textarea class="IO-textArea"></textarea>
+            </div>
+          </div>
+
+          <!-- <div class=""></div> -->
         </div>
+
+        <!-- </div> -->
         <!-- Window End -->
         <div class="videoAndChatBox">
           <!-- Video Call -->
+          <!-- <div id="video-container"> -->
           <div id="video-container">
             <!-- <video autoplay id="second-video"></video>
             <video autoplay id="my-video" muted="true"></video> -->
             <div id="video-grid"></div>
+            <!-- <div id="video-grid"></div>
+            <div id="video-grid"></div>
+            <div id="video-grid"></div>
+            <div id="video-grid"></div> -->
           </div>
           <!-- Chat room -->
-          <div class="panel-body">
-            <ul
-              class="media-list"
-              style="height: 195px; overflow-y: scroll"
-              id="chatbox-listMessages"
-            ></ul>
-          </div>
-          <div class="panel-footer">
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter message"
-                id="userMessage"
-              />
-              <span class="input-group-btn">
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  onclick="sendMessage()"
-                >
-                  SEND
-                </button>
-              </span>
+          <div class="chat-container">
+            <div class="panel-body">
+              <ul
+                class="media-list"
+                style="height: 195px; overflow-y: scroll"
+                id="chatbox-listMessages"
+              ></ul>
+            </div>
+            <div class="panel-footer">
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control input-chat"
+                  placeholder="Enter message"
+                  id="userMessage"
+                />
+                <span class="input-group-btn">
+                  <button
+                    type="button"
+                    class="btn btn-chat"
+                    onclick="sendMessage()"
+                  >
+                    SEND
+                  </button>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -411,5 +447,6 @@
       </div>
       <!-- Main Window END-->
     </div>
+    <script type="text/javascript" src="/public/pairup.js"></script>
   </body>
 </html>
