@@ -5,7 +5,8 @@ const WebSocket = require("ws");
 const WebSocketJSONStream = require("websocket-json-stream");
 const http = require("http");
 const socketIo = require("socket.io");
-
+var axios = require("axios");
+var qs = require("qs");
 const anchors = {};
 const names = {};
 
@@ -59,6 +60,34 @@ module.exports = function (server) {
       console.log("messaage chatted");
       io.to(roomId).emit("chatMessage", data);
     });
+    client.on("execute", async (roomId, code, language, input) => {
+      console.log("received io event from client ", code, input, language);
+      var data = qs.stringify({
+        code,
+        language,
+        input,
+      });
+      var config = {
+        method: "post",
+        url: "https://codex-api.herokuapp.com/",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        data: data,
+      };
+      let err = "",
+        resp = "";
+      try {
+        let response = (await axios(config)).data;
+        resp = response.output;
+      } catch (error) {
+        err = error;
+      }
+
+      console.log(err, resp);
+      io.to(roomId).emit("codeResult", err, resp);
+    });
+
     io.emit("id-join", {
       id,
       name: names[id],

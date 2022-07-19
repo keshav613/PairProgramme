@@ -251,6 +251,7 @@
     <script src="/public/script.js" defer></script>
     <script src="/public/AV-chat.js" defer></script>
     <script src="/public/codeMirror.js" defer></script>
+    <!-- <script type="text/javascript" src="/public/codeCompile.js"></script> -->
     <!-- <script src="/public/AV-chat.js" defer></script> -->
     <link rel="stylesheet" href="/node_modules/codemirror/lib/codemirror.css" />
   </head>
@@ -375,12 +376,12 @@
             <!-- <textarea id="codeMirror"></textarea> -->
             <textarea></textarea>
           </div>
-          <div class="TestCases">
+          <div class="TestCases" id="addTestCase">
             <div class="btn btn-AddTestcase">Add Testcase</div>
           </div>
 
           <div class="IO-container hideElement">
-            <div class="run-code">
+            <div class="run-code" id="runCode">
               <button class="btn-IO btn-testcase btn-IO-default">
                 Run Code
               </button>
@@ -392,7 +393,7 @@
               <button class="btn-IO btn-runCodeResult">Run code result</button>
             </div>
             <div class="IO-textArea-container">
-              <textarea class="IO-textArea"></textarea>
+              <textarea class="IO-textArea" id="testCase"></textarea>
             </div>
           </div>
 
@@ -447,6 +448,6 @@
       </div>
       <!-- Main Window END-->
     </div>
-    <script type="text/javascript" src="/public/pairup.js"></script>
   </body>
+  <script type="text/javascript" src="/public/codeCompile.js"></script>
 </html>
