@@ -321,10 +321,6 @@ body,
   text-align: center;
 }
 
-
-
-
-
 .Window {
   display: grid;
   grid-template-rows: 0.2fr 3fr 1fr;
@@ -393,10 +389,8 @@ h1 {
 }
 
 .IO-textArea-container {
-
   height: 100%;
   width: 100%;
-
 }
 
 .IO-textArea {
@@ -500,7 +494,6 @@ h1 {
   row-gap: 1rem;
   align-items: center;
   justify-items: center;
-
 }
 
 video {
@@ -509,8 +502,6 @@ video {
   width: 300px;
   /* object-fit: cover; */
 }
-
-
 
 .btn-chat {
   display: block;
