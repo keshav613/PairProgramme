@@ -14,7 +14,7 @@ let fontSize = document.getElementById("fontSize").value,
 console.log(fontSize, theme, language);
 
 CodeMirror.modeURL = "/node_modules/codemirror/mode/%N/%N.js";
-let ed = CodeMirror.fromTextArea(document.querySelector("textarea"), {
+ed = CodeMirror.fromTextArea(document.querySelector("textarea"), {
   lineNumbers: true,
   value: content,
   matchBrackets: true,
@@ -273,6 +273,12 @@ io.on("editorChanged", async (mode) => {
   language = mode;
   setEditor();
   document.getElementById("language").value = mode;
+});
+
+io.on("codeResult", (err, output) => {
+  console.log("received codex aPI output");
+  if (err) console.log(err);
+  if (output) console.log(output);
 });
 
 io.on("editorPropertyChanged", (selectedTheme, fontSize) => {
