@@ -427,7 +427,15 @@ h1 {
   background-color: #fe902f;
   font-size: 1.4em;
   border: none;
+  cursor: pointer;
   outline: 0.1px solid rgb(189, 189, 189);
+  /* transition: 0.3s; */
+
+}
+
+.btn-IO-runCode:hover {
+  box-shadow: 0 1rem 2rem rgba(152, 152, 152, 0.2);
+  transform: translateY(-0.3rem);
 }
 
 .btn-IO-default {
