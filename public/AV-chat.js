@@ -31,9 +31,9 @@ navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
 
   io.on("chatMessage", function (data) {
     console.log("chat message recieved from broadcast", data);
-    document
-      .getElementById("chatbox-listMessages")
-      .append(userMessage(data.message));
+    var msg = document.createElement("div");
+    msg.innerText = userMessage(data.message);
+    document.getElementById("chatbox-listMessages").append(msg);
   });
 
   //Call new user with your stream
