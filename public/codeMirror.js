@@ -275,10 +275,19 @@ io.on("editorChanged", async (mode) => {
   document.getElementById("language").value = mode;
 });
 
+// var IOTextArea = document.querySelector("IO-textArea");
+
 io.on("codeResult", (err, output) => {
   console.log("received codex aPI output");
-  if (err) console.log(err);
-  if (output) console.log(output);
+  if (err) {
+    document.getElementById("testCase").value = output;
+    console.log(err);
+  }
+
+  if (output) {
+    document.getElementById("testCase").value = output;
+    console.log(output);
+  }
 });
 
 io.on("editorPropertyChanged", (selectedTheme, fontSize) => {
