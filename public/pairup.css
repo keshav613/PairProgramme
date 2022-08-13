@@ -391,6 +391,7 @@ h1 {
 .IO-textArea-container {
   height: 100%;
   width: 100%;
+  position: relative;
 }
 
 .IO-textArea {
@@ -403,8 +404,9 @@ h1 {
 
 .run-code {
   position: absolute;
-  top: 81%;
-  left: 91%;
+  top: 80%;
+  left: 90%;
+  z-index: 1;
 }
 
 .IO {
@@ -436,6 +438,24 @@ h1 {
   background-color: #fff;
   color: #fe902f;
 }
+
+.loading-Element::after {
+  content: "";
+  width: 3rem;
+  height: 3rem;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 50px;
+  margin: auto;
+  border: 5px solid transparent;
+  border-top-color: #fe902f;
+  border-radius: 50%;
+  animation: loading 1s ease infinite;
+}
+
 
 #wrapper {
   display: flex;
@@ -538,7 +558,9 @@ video {
 .panel-body {
   background-color: red;
   color: blue;
+
 }
+
 
 /* #video-grid {
   width: 100px;
@@ -564,5 +586,15 @@ video {
 
   100% {
     opacity: 0.5;
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }

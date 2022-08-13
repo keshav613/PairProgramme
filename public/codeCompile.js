@@ -18,7 +18,26 @@ document.getElementById("addTestCase").onclick = () => {
   TestCases.classList.add("hideElement");
   IOcontainer.classList.remove("hideElement");
 };
+var btnIOrunCOde = document.querySelector(".btn-IO-runCode");
+var btnTestcase = document.querySelector(".btn-testcase");
+var btnRunCodeResult = document.querySelector(".btn-runCodeResult");
+
+btnIOrunCOde.addEventListener("click", () => {
+  btnRunCodeResult.classList.add("btn-IO-default");
+  btnTestcase.classList.remove("btn-IO-default");
+  console.log("added color");
+});
+
+// document.querySelector(".run-code").addEventListener("click", () => {
+//   // var loadingElement = document.querySelector(".loading-Element");
+// });
+
 document.getElementById("runCode").onclick = () => {
+  var IOtextAreaContainer = document.querySelector(".IO-textArea-container");
+  IOtextAreaContainer.classList.add("loading-Element");
+  // var loadingElement = document.querySelector(".loading-Element");
+  // var IOtextAreaContainer = document.querySelector(".IO-textArea-container");
+  // IOtextAreaContainer.classList.add(loadingElement);
   let code = ed.getValue(); //document.querySelector("textarea"); //document.getElementById("codeMirror").value,
   // console.log("==>", code);
   // let ed.

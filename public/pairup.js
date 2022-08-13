@@ -17,7 +17,6 @@ AddTestcase.addEventListener("click", function () {
   TestCases.classList.add("hideElement");
   IOcontainer.classList.remove("hideElement");
 });
-
 var btnIOrunCOde = document.querySelector(".btn-IO-runCode");
 var btnTestcase = document.querySelector(".btn-testcase");
 var btnRunCodeResult = document.querySelector(".btn-runCodeResult");
@@ -25,11 +24,10 @@ btnIOrunCOde.addEventListener("click", () => {
   btnRunCodeResult.classList.add("btn-IO-default");
   btnTestcase.classList.remove("btn-IO-default");
 });
-
-btnTestcase.addEventListener("click", () => {
-  btnRunCodeResult.classList.remove("btn-IO-default");
-  btnTestcase.classList.add("btn-IO-default");
-});
+// btnTestcase.addEventListener("click", () => {
+//   btnRunCodeResult.classList.remove("btn-IO-default");
+//   btnTestcase.classList.add("btn-IO-default");
+// });
 
 // var btnChat = document.querySelector(".btn-chat");
 // var mediaList = document.querySelector(".media-list");

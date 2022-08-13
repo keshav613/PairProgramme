@@ -279,6 +279,8 @@ io.on("editorChanged", async (mode) => {
 
 io.on("codeResult", (err, output) => {
   console.log("received codex aPI output");
+  var IOtextAreaContainer = document.querySelector(".IO-textArea-container");
+  IOtextAreaContainer.classList.remove("loading-Element");
   if (err) {
     document.getElementById("testCase").value = output;
     console.log(err);
