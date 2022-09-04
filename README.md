@@ -8,6 +8,11 @@ Features:
 - Real time chatting.
 
 Future features:
-- Voice and Video support 
 - Screen share
+- Saving and resuming the work in online eidtor
 ....
+
+A glimpse of the project. 
+Now users can exchange their ideas in an audio-video call and can collabiratively code and execute.
+Users can choose over C++, Java, Pyhton and Javascript and can personlaize their editor with various theme and font size.
+![demo](https://user-images.githubusercontent.com/73961910/188313508-359ca02c-e438-4357-aff6-4b08a15d353a.JPG)
