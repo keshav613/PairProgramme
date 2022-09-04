@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collaborative CodeMirror Editor</title>
+    <!-- <style type="text/css">
+      
+    </style> -->
+    <link rel="stylesheet" href="/public/pairup.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/3024-day.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/3024-night.css"
+    />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/abbott.css" />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/abcdef.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/ambiance.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/ayu-dark.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/ayu-mirage.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/base16-dark.css"
+    />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/bespin.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/base16-light.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/blackboard.css"
+    />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/cobalt.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/colorforth.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/dracula.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/duotone-dark.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/duotone-light.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/eclipse.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/elegant.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/erlang-dark.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/gruvbox-dark.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/hopscotch.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/icecoder.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/isotope.css"
+    />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/juejin.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/lesser-dark.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/liquibyte.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/lucario.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/material.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/material-darker.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/material-palenight.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/material-ocean.css"
+    />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/mbo.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/mdn-like.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/midnight.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/monokai.css"
+    />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/moxer.css" />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/neat.css" />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/neo.css" />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/night.css" />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/nord.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/oceanic-next.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/panda-syntax.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/paraiso-dark.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/paraiso-light.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/pastel-on-dark.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/railscasts.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/rubyblue.css"
+    />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/seti.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/shadowfox.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/solarized.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/the-matrix.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/tomorrow-night-bright.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/tomorrow-night-eighties.css"
+    />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/ttcn.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/twilight.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/vibrant-ink.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/xq-dark.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/xq-light.css"
+    />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/yeti.css" />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/idea.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/darcula.css"
+    />
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/yonce.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/codemirror/theme/zenburn.css"
+    />
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script>
+      const ROOM_ID = "<%= roomId %>";
+    </script>
+    <script
+      type="text/javascript"
+      src="/node_modules/codemirror/lib/codemirror.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/node_modules/codemirror/addon/selection/mark-selection.js"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="/sharedb-dist/sharedb-client.min.js"
+      defer
+    ></script>
+    <script
+      type="text/javascript"
+      src="/sharedb-dist/ot-text.min.js"
+      defer
+    ></script>
+    <script
+      src="https://unpkg.com/peerjs@1.4.5/dist/peerjs.min.js"
+      defer
+    ></script>
+    <script
+      src="/node_modules/codemirror/addon/mode/loadmode.js"
+      defer
+    ></script>
+    <script
+      src="/node_modules/codemirror/addon/edit/matchbrackets.js"
+      defer
+    ></script>
+    <script src="/public/script.js" defer></script>
+    <script src="/public/AV-chat.js" defer></script>
+    <script src="/public/codeMirror.js" defer></script>
+    <!-- <script type="text/javascript" src="/public/codeCompile.js"></script> -->
+    <!-- <script src="/public/AV-chat.js" defer></script> -->
+    <link rel="stylesheet" href="/node_modules/codemirror/lib/codemirror.css" />
+  </head>
+  <body>
+    <ul id="users"></ul>
+    <div class="section-Main">
+      <div class="mainWindow">
+        <div class="Window">
+          <div class="designWindow">
+            <div class="sizeArea">
+              <label class="designWindow-Label" for="fontSize">Font Size</label>
+              <select
+                id="fontSize"
+                name="fontSize"
+                class="input"
+                onchange="editorPropertyChanged(null, this.value)"
+              >
+                <option value="16">16</option>
+                <option value="18">18</option>
+                <option value="20">20</option>
+                <option value="22">22</option>
+              </select>
+            </div>
+            <div class="themeArea">
+              <label
+                class="designWindow-Label"
+                for="theme"
+                onchange="editorPropertyChanged(this.value, null)"
+                >Theme</label
+              >
+              <select
+                id="theme"
+                onchange="editorPropertyChanged(this.value, null)"
+                name="theme"
+              >
+                <option selected>default</option>
+                <option>3024-day</option>
+                <option>3024-night</option>
+                <option>abbott</option>
+                <option>abcdef</option>
+                <option>ambiance</option>
+                <option>ayu-dark</option>
+                <option>ayu-mirage</option>
+                <option>base16-dark</option>
+                <option>base16-light</option>
+                <option>bespin</option>
+                <option>blackboard</option>
+                <option>cobalt</option>
+                <option>colorforth</option>
+                <option>darcula</option>
+                <option>dracula</option>
+                <option>duotone-dark</option>
+                <option>duotone-light</option>
+                <option>eclipse</option>
+                <option>elegant</option>
+                <option>erlang-dark</option>
+                <option>gruvbox-dark</option>
+                <option>hopscotch</option>
+                <option>icecoder</option>
+                <option>idea</option>
+                <option>isotope</option>
+                <option>juejin</option>
+                <option>lesser-dark</option>
+                <option>liquibyte</option>
+                <option>lucario</option>
+                <option>material</option>
+                <option>material-darker</option>
+                <option>material-palenight</option>
+                <option>material-ocean</option>
+                <option>mbo</option>
+                <option>mdn-like</option>
+                <option>midnight</option>
+                <option>monokai</option>
+                <option>moxer</option>
+                <option>neat</option>
+                <option>neo</option>
+                <option>night</option>
+                <option>nord</option>
+                <option>oceanic-next</option>
+                <option>panda-syntax</option>
+                <option>paraiso-dark</option>
+                <option>paraiso-light</option>
+                <option>pastel-on-dark</option>
+                <option>railscasts</option>
+                <option>rubyblue</option>
+                <option>seti</option>
+                <option>shadowfox</option>
+                <option>solarized dark</option>
+                <option>solarized light</option>
+                <option>the-matrix</option>
+                <option>tomorrow-night-bright</option>
+                <option>tomorrow-night-eighties</option>
+                <option>ttcn</option>
+                <option>twilight</option>
+                <option>vibrant-ink</option>
+                <option>xq-dark</option>
+                <option>xq-light</option>
+                <option>yeti</option>
+                <option>yonce</option>
+                <option>zenburn</option>
+              </select>
+            </div>
+            <div class="languageArea">
+              <label class="designWindow-Label" for="language">language</label>
+              <select
+                id="language"
+                name="language"
+                onchange="editorChanged(this.value)"
+              >
+                <option value="clike">C++</option>
+                <option value="python">Python</option>
+                <option value="clike">Java</option>
+                <option value="javaScript">JavaScript</option>
+              </select>
+            </div>
+          </div>
+          <!-- <div class="codeWindow" id="codeMirror">
+            <textarea></textarea>
+          </div> -->
+
+          <div class="codeWindow" id="codeMirror">
+            <!-- <textarea id="codeMirror"></textarea> -->
+            <textarea></textarea>
+          </div>
+          <div class="TestCases" id="addTestCase">
+            <div class="btn btn-AddTestcase">Add Testcase</div>
+          </div>
+
+          <div class="IO-container hideElement">
+            <div class="run-code" id="runCode">
+              <button class="btn-IO btn-IO-runCode btn-IO-default">
+                Run Code
+              </button>
+            </div>
+            <div class="IO">
+              <button class="btn-IO btn-testcase btn-IO-default">
+                Testcase
+              </button>
+              <button class="btn-IO btn-runCodeResult">Run code result</button>
+            </div>
+            <div class="IO-textArea-container">
+              <textarea class="IO-textArea" id="testCase"></textarea>
+            </div>
+          </div>
+
+          <!-- <div class=""></div> -->
+        </div>
+
+        <!-- </div> -->
+        <!-- Window End -->
+        <div class="videoAndChatBox">
+          <!-- Video Call -->
+          <!-- <div id="video-container"> -->
+          <div id="video-container">
+            <!-- <video autoplay id="second-video"></video>
+            <video autoplay id="my-video" muted="true"></video> -->
+            <div id="video-grid"></div>
+            <!-- <div id="video-grid"></div>
+            <div id="video-grid"></div>
+            <div id="video-grid"></div>
+            <div id="video-grid"></div> -->
+          </div>
+          <!-- Chat room -->
+          <div class="chat-container">
+            <div class="panel-body">
+              <ul
+                class="media-list"
+                style="height: 195px; overflow-y: scroll chatbox-listMessages"
+              >
+                <div id="chatbox-listMessages" style="margin-left: 1rem"></div>
+              </ul>
+            </div>
+            <div class="panel-footer">
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control input-chat"
+                  placeholder="Enter message"
+                  id="userMessage"
+                />
+                <span class="input-group-btn">
+                  <button
+                    type="button"
+                    class="btn btn-chat"
+                    onclick="sendMessage()"
+                  >
+                    SEND
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Video & Chat box end -->
+      </div>
+      <!-- Main Window END-->
+    </div>
+  </body>
+  <script type="text/javascript" src="/public/codeCompile.js"></script>
+</html>

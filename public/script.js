@@ -1,0 +1,2 @@
+// Websocket Initialization
+io = io();
