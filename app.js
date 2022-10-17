@@ -56,4 +56,4 @@ app.use("/", loginRouter);
 app.set("port", port);
 let server = http.createServer(app);
 require("./socket")(server);
-server.listen(port);
+server.listen(port, () => console.log(`Listening on port ${port}`));
